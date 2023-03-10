@@ -7,7 +7,7 @@ ENV REFRESHED_AT=2023-03-10
 #x-release-please-start-version
 LABEL Name="evantill/plantuml-cheerpj" \
       Maintainer="eric.vantillard@evaxion.fr" \
-      Version="0.1.0"
+      Version="1.0.0"
 #x-release-please-end
 
 HEALTHCHECK CMD ["/app/healthcheck.sh"]
