@@ -1,11 +1,11 @@
 ARG BASE_IMAGE=debian:11.6-slim@sha256:98d3b4b0cee264301eb1354e0b549323af2d0633e1c43375d0b25c01826b6790
 FROM ${BASE_IMAGE}
 
-ENV REFRESHED_AT=2023-01-12
+ENV REFRESHED_AT=2023-03-10
 
-LABEL Name="senzing/template" \
-      Maintainer="support@senzing.com" \
-      Version="1.3.2"
+LABEL Name="evantill/plantuml-cheerpj" \
+      Maintainer="eric.vantillard@evaxion.fr" \
+      Version="0.1.0"
 
 HEALTHCHECK CMD ["/app/healthcheck.sh"]
 
