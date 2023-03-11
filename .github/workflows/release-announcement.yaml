@@ -1,4 +1,4 @@
-name: Release messages to discord announcement channel
+name: Release Announcement
 
 on: 
   release:
@@ -6,10 +6,15 @@ on:
       - released
 
 jobs:
-  run_main:
+  release-notification:
     runs-on: ubuntu-latest
     name: Sends custom message
     steps:
+      - name: Dump release event content
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
       - name: Sending message
         uses: nhevia/discord-styled-releases@main
         with:
