@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 [markdownlint](https://dlaa.me/markdownlint/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0-alpha](https://github.com/evantill/plantuml-cheerpj/compare/v1.1.0-alpha...v1.2.0-alpha) (2023-03-11)
+
+
+### Features
+
+* test releasing ([53e09f8](https://github.com/evantill/plantuml-cheerpj/commit/53e09f87d5406edd862a79a5b01517662b84c5fd))
+
+
+### Bug Fixes
+
+* **build:** Use token for auto releasing ([eb58d2f](https://github.com/evantill/plantuml-cheerpj/commit/eb58d2fe71cf22821501863660335f0b0d0d5457))
+
 ## 1.0.0 (2023-03-10)
 
 
