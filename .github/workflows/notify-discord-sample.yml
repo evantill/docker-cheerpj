@@ -77,11 +77,22 @@ jobs:
         run: |
           echo "SOME_PART=$SOME_PART"
 
+      - name: Send a message with a component using YAML
+        uses: MineBartekSA/discord-webhook@v2
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK_TEST_URL }}
+          content: Some text
+          component: |
+            type: 2
+            style: 5
+            label: Link Button
+            url: https://google.com/
+            
       - name: Send discord message
         uses: Ilshidur/action-discord@0.3.2
         env:
-          DISCORD_WEBHOOK: "${{ secrets.DISCORD_WEBHOOK }}"
-          EVENT_PAYLOAD: "${{ toJson(github.event) }}"
-          DISCORD_EMBEDS: "${{ toJson(fromJSON(steps.discord-message.outputs.DISCORD_MESSAGE).embeds) }}"
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          EVENT_PAYLOAD: ${{ toJson(github.event) }}
+          DISCORD_EMBEDS: ${{ toJson(fromJSON(steps.discord-message.outputs.DISCORD_MESSAGE).embeds) }}
         with:
-          args: "The project ${{ EVENT_PAYLOAD.repository.full_name }} has been deployed."
+          args: "The project ${{ env.EVENT_PAYLOAD.repository.full_name }} has been deployed."
