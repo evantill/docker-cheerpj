@@ -9,27 +9,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: actions/cache/restore@v3
-        id: cache
-        if: ${{ env.ACT }}
-        with:
-          path: /usr/local/bin/yq
-          key: ${{ runner.os }}-yq
+      # - uses: actions/cache/restore@v3
+      #   id: cache
+      #   with:
+      #     path: /usr/local/bin/yq
+      #     key: ${{ runner.os }}-yq
 
-      - name: Install yq
-        if: steps.cache.outputs.cache-hit != 'true' && ${{ env.ACT }}
-        run: |
-          wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
-          sudo chmod a+x /usr/local/bin/yq
-          yq --version
+      # - name: Install yq
+      #   if: steps.cache.outputs.cache-hit != 'true'
+      #   run: |
+      #     wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+      #     sudo chmod a+x /usr/local/bin/yq
+      #     yq --version
 
-      - uses: actions/cache/save@v3
-        if: steps.cache.outputs.cache-hit != 'true' && ${{ env.ACT }}
-        with:
-          path: /usr/local/bin/yq
-          key: ${{ runner.os }}-yq
+      # - uses: actions/cache/save@v3
+      #   if: steps.cache.outputs.cache-hit != 'true'
+      #   with:
+      #     path: /usr/local/bin/yq
+      #     key: ${{ runner.os }}-yq
 
       - name: define discord message
+        id: discord-message
         env:
           DISCORD_MESSAGE: |
             channel_id: context.params.event.channel_id
@@ -67,13 +67,21 @@ jobs:
                 text: 21/07/2023
               url: https://github.com/evantill/plantuml-cheerpj/releases/tag/untagged-213445f7e7a8e3b5f93d
         run: |
-          echo "$DISCORD_MESSAGE" | yq . -o=json
+          #yaml to json
+          DISCORD_MESSAGE=$(echo "$DISCORD_MESSAGE" | yq -o=json . -I 0 -M -)
+          echo "DISCORD_MESSAGE=$DISCORD_MESSAGE" >> $GITHUB_OUTPUT
+
+      - name: test message
+        env:
+          SOME_PART: ${{ toJson(fromJSON(steps.discord-message.outputs.DISCORD_MESSAGE).embeds) }}
+        run: |
+          echo "SOME_PART=$SOME_PART"
 
       - name: Send discord message
-        if: false
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          EVENT_PAYLOAD: ${{ github.event }}
         uses: Ilshidur/action-discord@0.3.2
+        env:
+          DISCORD_WEBHOOK: "${{ secrets.DISCORD_WEBHOOK }}"
+          EVENT_PAYLOAD: "${{ toJson(github.event) }}"
+          DISCORD_EMBEDS: "${{ toJson(fromJSON(steps.discord-message.outputs.DISCORD_MESSAGE).embeds) }}"
         with:
-          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
+          args: "The project ${{ EVENT_PAYLOAD.repository.full_name }} has been deployed."
