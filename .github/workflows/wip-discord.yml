@@ -1,0 +1,102 @@
+name: WIP Discord
+
+on:
+  workflow_dispatch:
+
+jobs:
+  wip-discord:
+    name: Send Discord message
+    runs-on: ubuntu-latest
+    steps:
+
+ 
+
+      # - name: define discord message
+      #   id: discord-message
+      #   env:
+      #     DISCORD_MESSAGE: |
+      #       channel_id: context.params.event.channel_id
+      #       content: ''
+      #       tts: false
+      #       components:
+      #       - type: 1
+      #         components:
+      #         - style: 5
+      #           label: Release Note
+      #           url: https://github.com/evantill/plantuml-cheerpj/blob/v1.2.0-alpha/CHANGELOG.md
+      #           disabled: false
+      #           type: 2
+      #       embeds:
+      #       - type: rich
+      #         title: plantuml-chieddkdkd Release 1.2.3
+      #         description: ''
+      #         color: '0xF6BC55'
+      #         fields:
+      #         - name: Repository
+      #           value: evantill/plantuml-chieddkdkd
+      #           inline: true
+      #         - name: Version
+      #           value: 1.2.3.4
+      #           inline: true
+      #         thumbnail:
+      #           url: https://avatars.githubusercontent.com/evantill
+      #           height: 0
+      #           width: 0
+      #         author:
+      #           name: evantill
+      #           url: https://github.com/evantill
+      #           icon_url: https://avatars.githubusercontent.com/evantill
+      #         footer:
+      #           text: 21/07/2023
+      #         url: https://github.com/evantill/plantuml-cheerpj/releases/tag/untagged-213445f7e7a8e3b5f93d
+      #   run: |
+      #     #yaml to json
+      #     DISCORD_MESSAGE=$(echo "$DISCORD_MESSAGE" | yq -o=json . -I 0 -M -)
+      #     echo "DISCORD_MESSAGE=$DISCORD_MESSAGE" >> $GITHUB_OUTPUT
+
+      # - name: test message
+      #   env:
+      #     SOME_PART: ${{ toJson(fromJSON(steps.discord-message.outputs.DISCORD_MESSAGE).embeds) }}
+      #   run: |
+      #     echo "SOME_PART=$SOME_PART"
+
+      - name: Send a message with a component using YAML
+        uses: MineBartekSA/discord-webhook@v2
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK_TEST_URL }}
+          content: Some text
+          username: Emanresu
+          avatar_url: https://avatars.githubusercontent.com/u/19757593
+          component: |
+            type: 2
+            style: 5
+            label: Link Button
+            url: https://google.com/
+          embed: |
+            title: Complex embed
+            color: 65535
+            author:
+              name: MineBartekSA
+              url: https://github.com/MineBartekSA
+              icon_url: https://avatars.githubusercontent.com/u/19757593
+            description: |
+              This is an example of a multi line
+              text in an embed
+            image:
+              url: https://http.cat/100
+            fields:
+              - name: First field
+                value: The value of the First field
+              - name: Second field
+                value: Value of the Second one
+            footer:
+          text: Footer text
+            
+      # - name: Send discord message
+      #   uses: Ilshidur/action-discord@0.3.2
+      #   env:
+      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      #     EVENT_PAYLOAD: ${{ toJson(github.event) }}
+      #     DISCORD_EMBEDS: ${{ toJson(fromJSON(steps.discord-message.outputs.DISCORD_MESSAGE).embeds) }}
+      #   with:
+      #     args: "The project ${{ env.EVENT_PAYLOAD.repository.full_name }} has been deployed."
