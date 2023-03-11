@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
 
-# Return codes.
-
-OK=0
-NOT_OK=1
-
-# Tests.
-
-echo "Doing testing."
-
-exit ${OK}
+mkdir /app
+cd /app
+wget https://docs.oracle.com/javase/tutorialJWS/samples/uiswing/TextDemoProject/TextDemo.jar
+cheerpjfy.py TextDemo.jar

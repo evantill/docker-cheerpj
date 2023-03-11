@@ -10,8 +10,6 @@ LABEL Name="evantill/plantuml-cheerpj" \
       Version="1.0.0"
 #x-release-please-end
 
-HEALTHCHECK CMD ["/app/healthcheck.sh"]
-
 # Run as "root" for system installation.
 
 USER root
@@ -33,7 +31,8 @@ RUN mkdir -p /tmp/cheerpj/cheerpj && \
     cd /tmp/cheerpj && \
     wget "$CHEERPJ_URL" && \
     tar -xvf "$CHEERPJ_TAR" -C cheerpj --strip-components 1 && \
-    mv cheerpj /opt
+    mv cheerpj /opt && \
+    rm "$CHEERPJ_TAR"
 
 ENV PATH "$PATH:/opt/cheerpj"
 
@@ -42,6 +41,10 @@ ENV PATH "$PATH:/opt/cheerpj"
 COPY ./rootfs /
 
 # Make non-root container.
+
+RUN groupadd --gid 1001 app && \
+    useradd --uid 1001 --gid app --home /app app && \
+    chown -R app:app /app
 
 USER 1001
 
