@@ -62,36 +62,45 @@ jobs:
 
       - name: Send a message with a component using YAML
         uses: MineBartekSA/discord-webhook@v2
+        env:
+          CHANGELOG_URL: "https://github.com/evantill/plantuml-cheerpj/releases/tag/v1.2.0-alpha"
+          REPOSITORY_NAME: "plantuml-cheerpj"
+          REPOSITORY_ID: "evantill/plantuml-cheerpj"
+          REPOSITORY_DESCRIPTION: "Generate diagrams from textual description"
+          RELEASE_DATE: "2015-12-31T12:00:00.000Z"
+          RELEASE_VERSION: "v1.2.3.4"
+          AUTHOR_NAME: "evantill"
+          AUTHOR_URL: "https://avatars.githubusercontent.com/u/609288?v=4"
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK_TEST_URL }}
-          content: Some text
+          content: Thank you to all who have contributed in this great work.
           username: Emanresu
-          avatar_url: https://avatars.githubusercontent.com/u/19757593
+          avatar_url: https://avatars.githubusercontent.com/plantuml
           component: |
-            type: 2
-            style: 5
-            label: Link Button
-            url: https://google.com/
+            type: 5
+            label: ChangeLog
+            url: ${{ env.CHANGELOG_URL }}
           embed: |
-            title: Complex embed
-            color: 65535
-            author:
-              name: MineBartekSA
-              url: https://github.com/MineBartekSA
-              icon_url: https://avatars.githubusercontent.com/u/19757593
-            description: |
-              This is an example of a multi line
-              text in an embed
+            title: "\U0001F389 ${{ env.REPOSITORY_NAME }} version ${{ env.RELEASE_VERSION }} is published ! \U0001F389"
+            color: 0x892038
+            description: "${{ env.REPOSITORY_DESCRIPTION }}"
+            url: ${{ env.CHANGELOG_URL }}
             image:
               url: https://http.cat/100
             fields:
-              - name: First field
-                value: The value of the First field
-              - name: Second field
-                value: Value of the Second one
+              - name: Project
+                value: ${{ env.REPOSITORY_ID }}
+              - name: Version
+                value: ${{ env.RELEASE_VERSION }}
+              - name: Release date
+                value: ${{ env.RELEASE_DATE }}
+            timestamp: ${{ env.RELEASE_DATE }}
+            thumbnail:
+              url: https://davidfpresents.com/wp-content/uploads/2018/02/shadok.jpg
             footer:
-          text: Footer text
-            
+              text: ${{ env.AUTHOR_NAME }}
+              icon_url: ${{ env.AUTHOR_URL }}
+
       # - name: Send discord message
       #   uses: Ilshidur/action-discord@0.3.2
       #   env:
