@@ -48,4 +48,5 @@ USER 1001
 # Runtime execution.
 
 WORKDIR /app
-CMD ["/app/sleep-infinity.sh"]
+
+ENTRYPOINT [ "/opt/cheerpj/cheerpjfy.py" ]
