@@ -1,0 +1,79 @@
+name: discord message
+
+on:
+  workflow_dispatch:
+
+jobs:
+  discord-message:
+    name: Send Discord message
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/cache/restore@v3
+        id: cache
+        if: ${{ env.ACT }}
+        with:
+          path: /usr/local/bin/yq
+          key: ${{ runner.os }}-yq
+
+      - name: Install yq
+        if: steps.cache.outputs.cache-hit != 'true' && ${{ env.ACT }}
+        run: |
+          wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod a+x /usr/local/bin/yq
+          yq --version
+
+      - uses: actions/cache/save@v3
+        if: steps.cache.outputs.cache-hit != 'true' && ${{ env.ACT }}
+        with:
+          path: /usr/local/bin/yq
+          key: ${{ runner.os }}-yq
+
+      - name: define discord message
+        env:
+          DISCORD_MESSAGE: |
+            channel_id: context.params.event.channel_id
+            content: ''
+            tts: false
+            components:
+            - type: 1
+              components:
+              - style: 5
+                label: Release Note
+                url: https://github.com/evantill/plantuml-cheerpj/blob/v1.2.0-alpha/CHANGELOG.md
+                disabled: false
+                type: 2
+            embeds:
+            - type: rich
+              title: plantuml-chieddkdkd Release 1.2.3
+              description: ''
+              color: '0xF6BC55'
+              fields:
+              - name: Repository
+                value: evantill/plantuml-chieddkdkd
+                inline: true
+              - name: Version
+                value: 1.2.3.4
+                inline: true
+              thumbnail:
+                url: https://avatars.githubusercontent.com/evantill
+                height: 0
+                width: 0
+              author:
+                name: evantill
+                url: https://github.com/evantill
+                icon_url: https://avatars.githubusercontent.com/evantill
+              footer:
+                text: 21/07/2023
+              url: https://github.com/evantill/plantuml-cheerpj/releases/tag/untagged-213445f7e7a8e3b5f93d
+        run: |
+          echo "$DISCORD_MESSAGE" | yq . -o=json
+
+      - name: Send discord message
+        if: false
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          EVENT_PAYLOAD: ${{ github.event }}
+        uses: Ilshidur/action-discord@0.3.2
+        with:
+          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
