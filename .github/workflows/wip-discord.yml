@@ -73,11 +73,11 @@ jobs:
           AUTHOR_URL: "https://avatars.githubusercontent.com/u/609288?v=4"
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK_TEST_URL }}
-          content: Thank you to all who have contributed in this great work.
-          username: Emanresu
+          username: Plantuml
           avatar_url: https://avatars.githubusercontent.com/plantuml
+          content: Thank you to all who have contributed in this great work.
           component: |
-            type: 5
+            type: 2
             label: ChangeLog
             url: ${{ env.CHANGELOG_URL }}
           embed: |
@@ -86,15 +86,15 @@ jobs:
             description: "${{ env.REPOSITORY_DESCRIPTION }}"
             url: ${{ env.CHANGELOG_URL }}
             image:
-              url: https://http.cat/100
+              url: https://miro.medium.com/v2/1*8-G_ojoQPPmnG8ig1RiZfg.png
             fields:
               - name: Project
                 value: ${{ env.REPOSITORY_ID }}
               - name: Version
                 value: ${{ env.RELEASE_VERSION }}
               - name: Release date
-                value: ${{ env.RELEASE_DATE }}
-            timestamp: ${{ env.RELEASE_DATE }}
+                value: "${{ env.RELEASE_DATE }}"
+            timestamp: "${{ env.RELEASE_DATE }}"
             thumbnail:
               url: https://davidfpresents.com/wp-content/uploads/2018/02/shadok.jpg
             footer:
