@@ -1,4 +1,4 @@
-# template-docker
+# Cheerpj docker image
 
 Placeholder for [GitHub pages](https://pages.github.com/).
 

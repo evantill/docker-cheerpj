@@ -1,8 +1,10 @@
-# plantuml-cheerpj
+# Cheerpj docker image
 
 ## Synopsis
 
-This section should give 4-5 sentences on what the artifacts in this repository do.
+[Cheerpj](https://leaningtech.com/cheerpj/) can convert a java application into a WebAssembly javascript application.
+
+This image allow to run cheerpj locally or in a github workflow.
 
 ## Overview
 
@@ -59,8 +61,9 @@ describing where we can improve.   Now on with the show...
 
 ## Related artifacts
 
-1. [DockerHub](https://hub.docker.com/r/senzing/xxxxxxxx)
-1. [Helm Chart](https://github.com/Senzing/charts/tree/main/charts/xxxxxxxx)
+1. [Github registry](https://github.com/evantill/plantuml-cheerpj/pkgs/container/plantuml-cheerpj)
+1. [Cheerpj](https://leaningtech.com/cheerpj/)
+
 
 ## Expectations
 
@@ -178,49 +181,6 @@ Use if a different userid (UID) is required.
 
     ```console
     export SENZING_RUNAS_USER_PARAMETER="--user ${SENZING_RUNAS_USER}"
-    ```
-
-### Database support
-
-:thinking: **Optional:**  Some databases need additional support.
-For other databases, these steps may be skipped.
-
-1. **Db2:** See
-   [Support Db2](https://github.com/Senzing/knowledge-base/blob/main/HOWTO/support-db2.md)
-   instructions to set `SENZING_OPT_IBM_DIR_PARAMETER`.
-1. **MS SQL:** See
-   [Support MS SQL](https://github.com/Senzing/knowledge-base/blob/main/HOWTO/support-mssql.md)
-   instructions to set `SENZING_OPT_MICROSOFT_DIR_PARAMETER`.
-
-### External database
-
-:thinking: **Optional:**  Use if storing data in an external database.
-If not specified, the internal SQLite database will be used.
-
-1. :pencil2: Specify database.
-   Example:
-
-    ```console
-    export DATABASE_PROTOCOL=postgresql
-    export DATABASE_USERNAME=postgres
-    export DATABASE_PASSWORD=postgres
-    export DATABASE_HOST=senzing-postgresql
-    export DATABASE_PORT=5432
-    export DATABASE_DATABASE=G2
-    ```
-
-1. Construct Database URL.
-   Example:
-
-    ```console
-    export SENZING_DATABASE_URL="${DATABASE_PROTOCOL}://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_DATABASE}"
-    ```
-
-1. Construct parameter for `docker run`.
-   Example:
-
-    ```console
-    export SENZING_DATABASE_URL_PARAMETER="--env SENZING_DATABASE_URL=${SENZING_DATABASE_URL}"
     ```
 
 ### Run Docker container
