@@ -1,5 +1,3 @@
-name: Build docker image
-
 on:
   workflow_dispatch:
   push:
@@ -15,13 +13,15 @@ permissions:
   contents: read
   packages: write
 
+name: ci-docker-image.yaml
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   TEST_TAG: ${{ github.repository }}:test
 
 jobs:
-  build-and-push-image:
+  ci-docker-image:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
