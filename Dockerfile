@@ -2,14 +2,6 @@ ARG BASE_IMAGE=debian:11.6-slim@sha256:98d3b4b0cee264301eb1354e0b549323af2d0633e
 
 FROM ${BASE_IMAGE}
 
-ENV REFRESHED_AT=2023-03-10
-
-#x-release-please-start-version
-LABEL Name="evantill/plantuml-cheerpj" \
-      Maintainer="eric.vantillard@evaxion.fr" \
-      Version="0.1.0"
-#x-release-please-end
-
 # Run as "root" for system installation.
 
 USER root
