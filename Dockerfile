@@ -7,7 +7,7 @@ ENV REFRESHED_AT=2023-03-10
 #x-release-please-start-version
 LABEL Name="evantill/plantuml-cheerpj" \
       Maintainer="eric.vantillard@evaxion.fr" \
-      Version="1.2.0-alpha"
+      Version="1.3.0-alpha"
 #x-release-please-end
 
 # Run as "root" for system installation.
