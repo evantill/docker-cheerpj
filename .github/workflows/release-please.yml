@@ -17,5 +17,4 @@ jobs:
         with:
           token: ${{ secrets.RELEASE_BOT_TOKEN }}
           release-type: simple
-          extra-files: |
-            Dockerfile
+
