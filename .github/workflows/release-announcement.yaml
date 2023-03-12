@@ -3,8 +3,13 @@ on:
     types:
       - released
 
-name: release-announcement.yaml
+name: Release Announcement
 
+env:
+  DISCORD_WEBHOOK_RELEASE_ANNOUCEMENT: ${{ secrets.DISCORD_WEBHOOK_RELEASE_ANNOUCEMENT }}
+  DISCORD_USERNAME: Plantuml
+  DISCORD_AVATAR_URL: https://avatars.githubusercontent.com/plantuml
+  
 jobs:
   release-annoucement:
     runs-on: ubuntu-latest
@@ -25,13 +30,13 @@ jobs:
           CHANGELOG_URL: "${{ github.event.release.html_url }}"
           RELEASE_DATE: "${{ github.event.release.created_at }}"
           RELEASE_VERSION: "${{ github.event.release.tag_name }}"
-          REPOSITORY_DESCRIPTION: "Generate diagrams from textual description"
-          REPOSITORY_ID: "evantill/plantuml-cheerpj"
-          REPOSITORY_NAME: "plantuml-cheerpj"
+          REPOSITORY_DESCRIPTION: "${{ github.event.repository.description }}"
+          REPOSITORY_ID: "${{ github.repository }}"
+          REPOSITORY_NAME: "${{ github.event.repository.name }}"
         with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK_DEV_RELEASE }}
-          username: Plantuml
-          avatar_url: https://avatars.githubusercontent.com/plantuml
+          webhook: ${{ env.DISCORD_WEBHOOK_RELEASE_ANNOUCEMENT }}
+          username: ${{ env.DISCORD_USERNAME }}
+          avatar_url: ${{ env.DISCORD_AVATAR_URL }}
           content: Thank you to all who have contributed in this great work.
           component: |
             - type: 1
