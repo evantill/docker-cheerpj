@@ -13,13 +13,13 @@ wget --version | head -1
 curl --version
 ```
 
-	> :thinking: Note: select `wget` or `curl` to download files.
+> :thinking: Note: select `wget` or `curl` to download files.
 
 ## Install the docker image
 
 ```bash
-docker pull ghcr.io/evantill/plantuml-cheerpj:latest
-docker tag ghcr.io/evantill/plantuml-cheerpj:latest cheerpj:installed
+docker pull ghcr.io/evantill/docker-cheerpj:latest
+docker tag ghcr.io/evantill/docker-cheerpj:latest cheerpj:installed
 docker run --rm -it cheerpj:installed
 ```
 
@@ -127,4 +127,4 @@ cheerpj TextDemo.jar
 ___
 
 _If the instructions are not clear, please let us know by opening a new
-[Documentation issue](https://github.com/evantill/plantuml-cheerpj/issues/new?template=documentation_request.md)._
+[Documentation issue](https://github.com/evantill/docker-cheerpj/issues/new?template=documentation_request.md)._
