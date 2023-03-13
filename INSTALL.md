@@ -1,4 +1,4 @@
-# Installation on your computer
+# Installation Guide
 
 > :warning: For windows users, we will use [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.3). If there is something different we will add a :thinking: Note.
 
