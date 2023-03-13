@@ -1,6 +1,4 @@
-name: Release Announcement
-
-on: 
+on:
   release:
     types:
       - released
@@ -9,9 +7,9 @@ name: Release Announcement
 
 env:
   DISCORD_WEBHOOK_RELEASE_ANNOUCEMENT: ${{ secrets.DISCORD_WEBHOOK_RELEASE_ANNOUCEMENT }}
-  DISCORD_USERNAME: Plantuml
-  DISCORD_AVATAR_URL: https://avatars.githubusercontent.com/plantuml
-  
+  DISCORD_USERNAME: Github
+  DISCORD_AVATAR_URL: https://avatars.githubusercontent.com/github
+
 jobs:
   release-notification:
     runs-on: ubuntu-latest
