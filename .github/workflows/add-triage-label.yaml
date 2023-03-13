@@ -2,12 +2,14 @@
 # - https://docs.github.com/en/actions/guides/adding-labels-to-issues
 # - https://github.com/andymckay/labeler
 
-name: add-triage-label.yaml
 on:
   issues:
     types:
       - reopened
       - opened
+
+name: Add triage label
+
 jobs:
   automate-issues-labels:
     name: Add triage label to issue
