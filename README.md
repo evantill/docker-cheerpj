@@ -7,10 +7,10 @@
 	</p>
 	<br />
     <p>
-        <a href="https://github.com/evantill/plantuml-cheerpj/pkgs/container/plantuml-cheerpj/?tag=latest"><img src="https://ghcr-badge.deta.dev/evantill/plantuml-cheerpj/size" alt="Docker image size" /></a>
-        <a href="https://github.com/evantill/plantuml-cheerpj/pkgs/container/plantuml-cheerpj/?tag=latest"><img src="https://ghcr-badge.deta.dev/evantill/plantuml-cheerpj/tags" alt="Docker image tags" /></a>
-        <a href="https://github.com/evantill/plantuml-cheerpj/pkgs/container/plantuml-cheerpj/?tag=latest"><img src="https://ghcr-badge.deta.dev/evantill/plantuml-cheerpj/latest_tag" alt="Docker image last version" /></a>
-        <a href="https://github.com/evantill/plantuml-cheerpj/pkgs/container/plantuml-cheerpj/?tag=latest"><img src="https://ghcr-badge.deta.dev/evantill/plantuml-cheerpj/develop_tag" alt="Docker image develop version" /></a>
+        <a href="https://github.com/evantill/docker-cheerpj/pkgs/container/docker-cheerpj/?tag=latest"><img src="https://ghcr-badge.deta.dev/evantill/docker-cheerpj/size" alt="Docker image size" /></a>
+        <a href="https://github.com/evantill/docker-cheerpj/pkgs/container/docker-cheerpj/?tag=latest"><img src="https://ghcr-badge.deta.dev/evantill/docker-cheerpj/tags" alt="Docker image tags" /></a>
+        <a href="https://github.com/evantill/docker-cheerpj/pkgs/container/docker-cheerpj/?tag=latest"><img src="https://ghcr-badge.deta.dev/evantill/docker-cheerpj/latest_tag" alt="Docker image last version" /></a>
+        <a href="https://github.com/evantill/docker-cheerpj/pkgs/container/docker-cheerpj/?tag=latest"><img src="https://ghcr-badge.deta.dev/evantill/docker-cheerpj/develop_tag" alt="Docker image develop version" /></a>
 	</p>
 	<p>
 		<a href="https://discord.gg/sXhzexAQGh"><img src="https://img.shields.io/discord/1083727021328306236?color=5865F2&logo=discord&logoColor=white" alt="Discord server" /></a>
@@ -46,7 +46,7 @@ For the most part, instructions are copy and paste.
 Whenever thinking is needed, it's marked with a "thinking" icon :thinking:.
 Whenever customization is needed, it's marked with a "pencil" icon :pencil2:.
 If the instructions are not clear, please let us know by opening a new
-[Documentation issue](https://github.com/evantill/plantuml-cheerpj/issues/new?template=documentation_request.md)
+[Documentation issue](https://github.com/evantill/docker-cheerpj/issues/new?template=documentation_request.md)
 describing where we can improve.   Now on with the show...
 
 ### Legend
@@ -59,7 +59,7 @@ describing where we can improve.   Now on with the show...
 
 ## Related artifacts
 
-1. [Docker Image in Github registry](https://github.com/evantill/plantuml-cheerpj/pkgs/container/plantuml-cheerpj)
+1. [Docker Image in Github registry](https://github.com/evantill/docker-cheerpj/pkgs/container/docker-cheerpj)
 1. [Cheerpj](https://leaningtech.com/download-cheerpj/)
 
 ## Expectations
