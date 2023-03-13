@@ -13,7 +13,7 @@ env:
   DISCORD_AVATAR_URL: https://avatars.githubusercontent.com/plantuml
   
 jobs:
-  release-notification:
+  release-annoucement:
     runs-on: ubuntu-latest
     name: Sends custom message
     steps:
