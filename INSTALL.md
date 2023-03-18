@@ -105,7 +105,7 @@ function cheerpj --description "run cheerpj"
 	docker run --interactive --rm \
 		-v $(pwd):/app \
 		cheerpj:installed \
-		"$argv"
+		$argv
 end
 ' | string trim > ~/.config/fish/functions/cheerpj.fish
 ```
